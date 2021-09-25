@@ -7,6 +7,7 @@ function App() {
   const decrement = () => setCounter((prev) => prev - 1);
   return (
     <div className='App'>
+      <h1>Halo GEZ</h1>
       <div>{counter}</div>
       <button onClick={decrement}>dikurangi</button>
       <button onClick={increment}>ditambah</button>
