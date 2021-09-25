@@ -1,20 +1,15 @@
-import logo from "./logo.svg";
 import "./App.css";
+import { useState } from "react";
 
 function App() {
+  const [counter, setCounter] = useState(0);
+  const increment = () => setCounter((prev) => prev + 2);
+  const decrement = () => setCounter((prev) => prev - 1);
   return (
     <div className='App'>
-      <header className='App-header'>
-        <img src={logo} className='App-logo' alt='logo' />
-        <p>Halo ini di edit</p>
-        <a
-          className='App-link'
-          href='https://reactjs.org'
-          target='_blank'
-          rel='noopener noreferrer'>
-          Learn React
-        </a>
-      </header>
+      <div>{counter}</div>
+      <button onClick={decrement}>dikurangi</button>
+      <button onClick={increment}>ditambah</button>
     </div>
   );
 }
