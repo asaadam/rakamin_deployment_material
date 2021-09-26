@@ -21,4 +21,4 @@ jobs:
       - name: npm ci, build and test
         run: |
           npm install 
-          npm test
+          npm test --passWithNoTests
