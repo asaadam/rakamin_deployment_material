@@ -32,3 +32,31 @@ jobs:
         run: |
           npm install
           npm run build
+
+  deploy_preview:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+       - uses: ./
+        id: vercel-action-staging
+        if: github.event_name == 'pull_request_target'
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          alias-domains: pr-{{PR_NUMBER}}.rakamin-deployment-material.adam321.vercel.app
+
+  deploy_to_prod:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+       - uses: ./
+        id: vercel-action-production
+        if: github.event_name == 'push'
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./
+          vercel-args: '--prod '
