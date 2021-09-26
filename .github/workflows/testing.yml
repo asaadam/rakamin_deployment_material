@@ -34,7 +34,7 @@ jobs:
   #         npm run build
 
   deploy_preview:
-    needs: test
+    needs: runing_test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -53,16 +53,11 @@ jobs:
           alias-domains: pr-{{PR_NUMBER}}.rakamin-deployment-material.adam321.vercel.app
 
   deploy_to_prod:
-    needs: test
+    needs: runing_test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Download the build folders
-        uses: actions/download-artifact@v2
-        with:
-          name: build
-          path: build
       - name: Deploy with vercel
         uses: amondnet/vercel-action@v20
         with:
