@@ -50,6 +50,7 @@ jobs:
   deploy_to_prod:
     needs: runing_test
     runs-on: ubuntu-latest
+    if: github.event_name == 'push'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
