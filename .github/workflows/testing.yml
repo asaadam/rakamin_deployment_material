@@ -34,7 +34,7 @@ jobs:
   #         npm run build
 
   deploy_preview:
-    needs: build
+    needs: runing_test
     runs-on: ubuntu-latest
     steps:
       - uses: amondnet/vercel-action@v20
@@ -48,7 +48,7 @@ jobs:
           alias-domains: pr-{{PR_NUMBER}}.rakamin-deployment-material.adam321.vercel.app
 
   deploy_to_prod:
-    needs: build
+    needs: runing_test
     runs-on: ubuntu-latest
     steps:
       - uses: amondnet/vercel-action@v20
