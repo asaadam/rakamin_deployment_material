@@ -36,6 +36,7 @@ jobs:
   deploy_preview:
     needs: runing_test
     runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request_target'
     steps:
       - name: Checkout
         uses: actions/checkout@v2
